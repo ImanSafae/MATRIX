@@ -7,13 +7,13 @@ class Matrix:
         self.values = values
 
     def shape(self) -> tuple[int, int]:
-        return len(self.values[0]), len(self.values) if self.values else 0
+        return len(self.values), len(self.values[0]) if self.values else 0
     
     def __str__(self):
         result = "["
         shape = self.shape()
-        width = shape[0]
-        height = shape[1]
+        height = shape[0]
+        width = shape[1]
         for i in range(height):
             for j in range(width):
                 result += str(self.values[i][j])
