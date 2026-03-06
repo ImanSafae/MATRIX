@@ -22,14 +22,14 @@ def linear_combination(vectors: list[Vector], scalars: list[float]):
 
 if __name__ == "__main__":
     scalars = [2, 2, 2]
-    vec1 = Vector([1, 2, 3])
-    vec2 = Vector([4, 5, 6])
-    vec3 = Vector([7, 8, 9])
-    vectors = [vec1, vec2, vec3]
-    print("Vectors:")
-    for v in vectors:
-        print(v)
-    print("Scalars:")
-    print(scalars)
-    print("Linear combination:")
-    print(linear_combination(vectors, scalars))
+    vec1 = Vector([-42, 42])
+    vec2 = Vector([-42])
+    vec3 = Vector([1, 3])
+    vec4 = Vector([10, 20])
+    vec5 = Vector([-42, 100, -69.5])
+    vec6 = Vector([1, 3, 5])
+    print("Linear combination of " + str(vec1) + " with -1:", linear_combination([vec1], [-1]))
+    print("Linear combination of " + str(vec2) + ", " + str(vec2) + " , " + str(vec2) + " with [-1, 1, 0]:", linear_combination([vec2, vec2, vec2], [-1, 1, 0]))
+    print("Linear combination of " + str(vec1) + ", " + str(vec3) + " , " + str(vec4) + " with [1, -10, -1]:", linear_combination([vec1, vec3, vec4], [1, -10, -1]))
+    
+    

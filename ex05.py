@@ -1,10 +1,13 @@
 from Vector import Vector
-from math import sqrt
+from math import fma
 
 def norm(v: Vector): # Euclidian norm
     values = v.values
     size = v.size()
-    return sqrt(sum(values[i] ** 2 for i in range(size)))
+    res = 0
+    for i in range(size):
+        res = fma(values[i], values[i], res)
+    return pow(res, 0.5)
 
 def angle_cos(v1: Vector, v2: Vector):
     v1_size = v1.size()
@@ -15,7 +18,7 @@ def angle_cos(v1: Vector, v2: Vector):
 
 
 if __name__ == "__main__":
-    v1 = Vector([1, 1, 1])
-    v2 = Vector([1, 0, 0])
+    v1 = Vector([0, 1])
+    v2 = Vector([4, 2])
     cos_angle = angle_cos(v1, v2)
     print(f"Cosine of the angle between {v1} and {v2} is: {cos_angle}")

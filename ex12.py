@@ -1,4 +1,5 @@
 from Matrix import Matrix
+from math import fma
 
 def inverse(m: Matrix):
     shape = m.shape()
@@ -23,18 +24,18 @@ def inverse(m: Matrix):
             if row != i and augmented[row][i] != 0:
                 factor = augmented[row][i]
                 for j in range(2 * n):
-                    augmented[row][j] -= factor * augmented[i][j]
+                    augmented[row][j] = fma(-factor, augmented[i][j], augmented[row][j])
     inverse_values = [row[n:] for row in augmented]
     return Matrix(inverse_values)
 
 if __name__ == "__main__":
-    m1 = Matrix([[1.0, 2.0], [3.0, 4.0]])
+    m1 = Matrix([[1, 0], [0, 1]])
     print("Matrix 1:")
     print(m1)
     print("\nInverse:")
     print(inverse(m1))
     
-    m2 = Matrix([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]])
+    m2 = Matrix([[2, 0], [0, 2]])
     print("\nMatrix 2:")
     print(m2)
     try:
@@ -43,8 +44,26 @@ if __name__ == "__main__":
     except ValueError as e:
         print(f"Error: {e}")
     
-    m3 = Matrix([[2.0, 1.0, 3.0], [1.0, 0.0, 1.0], [1.0, 2.0, 1.0]])
+    m3 = Matrix([[0.5, 0], [0, 0.5]])
     print("\nMatrix 3:")
     print(m3)
     print("\nInverse:")
     print(inverse(m3))
+
+    m4 = Matrix([[0, 1], [1, 0]])
+    print("\nMatrix 4:")
+    print(m4)
+    print("\nInverse:")
+    print(inverse(m4))
+
+    m5 = Matrix([[1,2], [3, 4]])
+    print("\nMatrix 5:")
+    print(m5)
+    print("\nInverse:")
+    print(inverse(m5))
+
+    m6 = Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    print("\nMatrix 6:")
+    print(m6)
+    print("\nInverse:")
+    print(inverse(m6))
